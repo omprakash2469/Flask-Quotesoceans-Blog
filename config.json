@@ -1,0 +1,7 @@
+{
+    "params":{
+        "db_uri": "mysql://root:@localhost/quotedb",
+        "site_name": "QuotesOceans",
+        "tag_line": "Great Quotes on Every Life Aspects"
+    }
+}

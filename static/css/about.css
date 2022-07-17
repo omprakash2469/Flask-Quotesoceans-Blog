@@ -1,0 +1,39 @@
+/* || About Page */
+.about-container {
+    width: 80%;
+    margin: 0px 20px;
+    padding: 50px 0px;
+    display: flex;
+  }
+  .about-side {
+    flex: 20%;
+  }
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 30px;
+    flex: 80%;
+  }
+  .about-box {
+    margin-bottom: 20px;
+  }
+  .about-box h2 {
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+  }
+  .about-link {
+    color: grey;
+    font-size: 1.24rem;
+    margin-bottom: 3px;
+    display: block;
+    transition: all 0.1s ease;
+  }
+  .about-link:hover {
+    color: rgb(34, 34, 34);
+    font-weight: bold;
+  }
+  .about-box .para {
+    color: #929292;
+    font-size: 1.12rem;
+    text-align: justify;
+  }

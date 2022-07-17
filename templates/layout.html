@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{params['site_name']}} || {{params['tag_line']}}</title>
+    <link rel="icon" href="{{ url_for('static', filename='/images/q.png') }}" type="images/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='') }}{{stylesheet}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/utility.css') }}">
+</head>
+
+<body>
+    <header id="header" class="d-flex">
+        <div class="top">
+            <div class="logo">
+                <h1><a class="h-primary d-flex" href="/"><img src="{{ url_for('static', filename='/images/q.png') }}" alt="QuotesOceansLogo">uotes<span class="coral">Oceans</span></a></h1>
+            </div>
+            <div class="menu d-flex">
+                <img onclick="navOpen()" src="{{ url_for('static', filename='/images/menu.png') }}" alt="menu"
+                    class="invert">
+            </div>
+        </div>
+        <div class="d-flex" id="search-bar">
+            <form action="/" method="get" class="search-form">
+                <input type="search" name="query" id="query" placeholder="Search by author name, quote, keyword..."
+                    class="search" autocomplete="off" value="{{search}}">
+                <button type="submit" class="search-btn d-flex"><img class="search-img"
+                        src="{{ url_for('static', filename='/images/search.png') }}" alt="Search here"></button>
+            </form>
+        </div>
+    </header>
+
+    <!-- Navigation Section -->
+    <nav id="navigation">
+        <div id="navbar">
+            <h2>All Categories <span onclick="navClose()">&times;</span></h2>
+            <ul class="menu-bar">
+                {% for category in categories %}
+                    <li><a class="nav-link" href="/quotes/{{category.name.lower()}}">{{category.name.capitalize()}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Scroll Top button -->
+    <div>
+        <a href="#header" id="scroll-top"><img src="{{ url_for('static', filename='/images/toparrow.png') }}"
+                alt="Scroll top"></a>
+    </div>
+
+    {% block body %} {% endblock %}
+
+    <footer id="footer" class="d-flex">
+        <div class="footer-top">
+            <div class="footer-box">
+                <h2>A Message From Owner</h2>
+                <p class="para para">
+                    Everyday you should hear some good thought from great people who had done something extraordinary
+                    things in life you should inspired from them. And for your help this is my trial to give you quotes
+                    and their meaning from the great personality, you will learn a lot from QuotesOceans.com. We are
+                    covering every quote given by great people. Thank You !
+                </p>
+                <p class="para right">- By Owner</p>
+            </div>
+            <div class="footer-box">
+                <h2>Connect</h2>
+                <ul>
+                    <li><a class="link" href="#" target="_blank"><img
+                                class="small-img mr" src="{{ url_for('static', filename='/images/instagram.png') }}"
+                                alt="Instagram">
+                            <p>Instagram</p>
+                        </a></li>
+                    <li><a class="link" href="#"
+                            target="_blank"><img class="small-img mr"
+                                src="{{ url_for('static', filename='/images/facebook.png') }}" alt="Facebook">
+                            <p>Facebook</p>
+                        </a></li>
+                    <li><a class="link" href="#" target="_blank"><img
+                                class="small-img mr" src="{{ url_for('static', filename='/images/twitter.png') }}"
+                                alt="Twitter">
+                            <p>Twitter</p>
+                        </a></li>
+                    <li><a class="link" href="#" target="_blank"><img
+                                class="small-img mr" src="{{ url_for('static', filename='/images/linkedin.png') }}"
+                                alt="LinkedIn">
+                            <p>LinkedIn</p>
+                        </a></li>
+                </ul>
+            </div>
+            <div class="footer-box">
+                <h2>Links</h2>
+                <ul>
+                    <li><a class="link" href="/"><img class="invert small-img mr" src="{{ url_for('static', filename='/images/home.png') }}" alt="Home">
+                            <p>Home</p>
+                        </a></li>
+                    <li onclick="navOpen()"><a class="link" href="#header"><img class="invert small-img mr"
+                                src="{{ url_for('static', filename='/images/search.png') }}" alt="Categories">
+                            <p>Categories</p>
+                        </a></li>
+                    <li><a class="link" href="/about"><img class="invert small-img mr" src="{{ url_for('static', filename='/images/user.png') }}"
+                                alt="About Us">
+                            <p>About Us</p>
+                        </a></li>
+                    <li><a class="link" href="/contact"><img class="invert small-img mr" src="{{ url_for('static', filename='/images/mail.png') }}"
+                                alt="Contact Us">
+                            <p>Contact Us</p>
+                        </a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom d-flex">
+            <p class="para">&copy; <a class="coral" href="/"><b>QuotesOceans.com</b></a> || {{params['tag_line']}} - All
+                Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- Javascript Section -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='')}}{{script}}"></script>
+
+</body>
+
+</html>

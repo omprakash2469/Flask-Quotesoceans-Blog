@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<!-- Quotes Section -->
+<section class="container">
+    <div class="c-header">
+        <h3>{{heading}}</h3>
+    </div>
+    <!-- <p style="color: white;">{{quotes}}</p> -->
+    <div class="categories">
+        <!-- Display All Quotes with Images -->
+        <div class="gallery_2">
+            {% for q in quotes %}
+                <figure class="gallery_2_item">
+                    <img class="gallery_2_img" src="{{ url_for('static', filename='images/pic.jpg') }}" alt="quotes[q].author">
+                    <figcaption class="gallery_2_info">
+                        <blockquote class="gallery_2_quote">{{quotes[q].quote}}</blockquote>
+                        <q class="gallery_2_author">{{quotes[q].author|title}}</q>
+                    </figcaption>
+                </figure>
+            {% endfor %}
+        </div>
+
+        <!-- Image Display Modal -->
+        <div id="myModal" class="modal">
+            <div class="d-flex popAni">
+                <figure class="modal-content">
+                    <img class="modal-img" id="modal_img" src="">
+                    <figcaption class="modal_2_info">
+                        <blockquote class="modal_2_quote" id="caption"></blockquote>
+                        <q class="modal_2_author" id="captionAuthor"></q>
+                    </figcaption>
+                </figure>
+            </div>
+            <span class="close" onclick="modalClose()">&times;</span>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
