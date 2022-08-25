@@ -12,7 +12,7 @@
         <div class="gallery_2">
             {% for q in quotes %}
                 <figure class="gallery_2_item">
-                    <img class="gallery_2_img" src="{{ url_for('static', filename='images/pic.jpg') }}" alt="quotes[q].author">
+                    <img class="gallery_2_img" src="{{ url_for('static', filename='assets/images/pic.jpg') }}" alt="quotes[q].author">
                     <figcaption class="gallery_2_info">
                         <blockquote class="gallery_2_quote">{{quotes[q].quote}}</blockquote>
                         <q class="gallery_2_author">{{quotes[q].author|title}}</q>

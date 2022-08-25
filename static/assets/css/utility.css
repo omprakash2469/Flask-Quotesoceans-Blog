@@ -73,7 +73,7 @@ html {
 .search {
   width: 100%;
   box-sizing: border-box;
-  padding: 10px 0px 10px 10px;
+  padding: 10px 0px 10px 30px;
   outline: none;
   border: none;
   font-size: 1.03rem;
@@ -173,15 +173,15 @@ html {
   user-select: none;
 }
 .footer-top {
-  display: grid;
-  grid-template-columns: 4fr 2fr 2fr;
-  width: 90%;
-  margin: 50px auto;
+  text-align: center;
+  margin-bottom: 50px;
   grid-gap: 5rem;
+  padding-top: 50px;
 }
 .footer-box {
   padding: 12px 20px;
   box-sizing: border-box;
+  text-align: center;
 }
 .footer-box h2 {
   color: white;
@@ -190,19 +190,31 @@ html {
 }
 
 .link {
-  display: flex;
   color: grey;
   padding: 8px 0px;
-  align-items: center;
   transition: all 0.3s ease;
+  margin-right: 10px;
 }
 .link:hover {
   color: var(--theme-1);
 }
+.w-70{
+  width: 90%;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.justify-between{
+  flex-direction: row !important;
+  justify-content: space-between !important;
+}
+
 .footer-bottom {
   padding: 20px;
   box-sizing: border-box;
   background-color: #252525;
+  flex-direction: row !important;
+  justify-content: space-evenly !important;
 }
 
 /* ||| Utility Section */
@@ -238,10 +250,6 @@ a {
 }
 
 /* Alignment */
-.right {
-  text-align: right !important;
-}
-
 /* Color */
 .coral {
   color: var(--theme-1);
@@ -259,7 +267,6 @@ a {
 .para {
   color: #929292;
   font-size: 1.02rem;
-  text-align: justify;
 }
 
 /* Lists */

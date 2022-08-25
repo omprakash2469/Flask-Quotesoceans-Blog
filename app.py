@@ -1,9 +1,7 @@
-from pickle import GET
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash, redirect
+from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 import json, os
-
-from sqlalchemy import null
 
 app = Flask(__name__)
 
@@ -12,6 +10,7 @@ with open('config.json', "r") as c:
     params = json.load(c)["params"]
 
 app.config['SQLALCHEMY_DATABASE_URI'] = params['db_uri']
+app.config['SECRET_KEY'] = "quotedb-secret-key"
 db = SQLAlchemy(app)
 
 """
@@ -27,6 +26,16 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     catImage = db.Column(db.String(50), nullable=False)
+
+class Contact(db.Model):
+    user_id = db.Column(db.Integer, primary_key=True)
+    fname = db.Column(db.String(50), nullable=False)
+    lname = db.Column(db.String(50), nullable=False)
+    location = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(50), nullable=False)
+    subject = db.Column(db.String(500), nullable=False)
+    message = db.Column(db.Text, nullable=False)
+    date = db.Column(db.DateTime, nullable=False)
 
 class Life(db.Model):
     quoteid = db.Column(db.Integer, primary_key=True)
@@ -141,7 +150,7 @@ class Universe(db.Model):
     quotedate = db.Column(db.Integer, nullable=False)
     
 
-
+db.create_all()
 
 """-----------------------------
 User Defined Functions
@@ -160,7 +169,7 @@ Initialize Website Endpoint
 # Many times used variable
 categories = Category.query.all()
 
-@app.route("/", methods=['GET'])
+@app.route("/")
 def root():
     # Fetch Categories and Authors
     authors = Author.query.all()
@@ -246,8 +255,33 @@ def authors(author):
     )
 
 # Authors Page
-@app.route("/contact")
+@app.route("/contact", methods=["GET", "POST"])
 def contact():
+    if request.method == "POST":
+        firstName = request.form.get('firstName')
+        lastName = request.form.get('lastName')
+        location = request.form.get('location')
+        email = request.form.get('email')
+        subject = request.form.get('subject')
+        message = request.form.get('message')
+        date = datetime.now()
+
+        # Check if required details are entered
+        if firstName and email and subject:
+            entry = Contact(fname=firstName, lname=lastName, location=location, email=email, subject=subject, message=message, date=date)
+            db.session.add(entry)
+            db.session.commit()
+
+            flash("Successful! We will contact you soon", "success")
+            return redirect(request.referrer)
+        else:
+            flash("Please Enter required details", "failure")
+            return render_template('contact.html',
+            categories=categories,
+            params=params,
+            stylesheet="css/contact.css"
+        )
+
     return render_template('contact.html',
         categories=categories,
         params=params,
@@ -263,5 +297,40 @@ def about():
         stylesheet="css/about.css"
     )
 
+
+"""
+QuotesOceans Dashboard
+"""
+
+@app.route("/dashboard")
+def dashboard():
+    return render_template("dashboard/index.html")
+
+@app.route("/dashboard/forms")
+def dashboard_forms():
+    return render_template("dashboard/forms.html")
+
+@app.route("/dashboard/buttons")
+def dashboard_buttons():
+    return render_template("dashboard/buttons.html")
+
+@app.route("/dashboard/modals")
+def dashboard_modals():
+    return render_template("dashboard/modals.html")
+
+@app.route("/dashboard/tables")
+def dashboard_tables():
+    return render_template("dashboard/tables.html")
+
+@app.route("/dashboard/cards")
+def dashboard_cards():
+    return render_template("dashboard/cards.html")
+
+@app.route("/dashboard/charts")
+def dashboard_charts():
+    return render_template("dashboard/charts.html")
+
+
 # Run Flask app
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run(port=8080)
