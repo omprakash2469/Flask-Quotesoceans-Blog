@@ -1,0 +1,12 @@
+{
+    "params":{
+        "db_uri": "mysql://root:@localhost/quotedb",
+        "sqlitedb_uri": "sqlite:///quotedb.db",
+        "site_name": "QuotesOceans",
+        "tag_line": "Great Quotes on Every Life Aspects",
+        "username": "Omprakash",
+        "password": "123",
+        "category_file_path": "D:/Projects/Flask--Quotesoceans/Flask Mysql/static/assets/images/category/",
+        "quotes_file_path": "D:/Projects/Flask--Quotesoceans/Flask Mysql/static/assets/images/quotes/"
+    }
+}

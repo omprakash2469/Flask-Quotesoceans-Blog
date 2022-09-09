@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{params['site_name']}} || {{params['tag_line']}}</title>
+    <link rel="icon" href="{{ url_for('static', filename='assets/images/q.png') }}" type="images/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}">
+</head>
+
+<body>
+    <header id="header" class="d-flex">
+        <div class="top">
+            <div class="logo">
+                <h1><a class="h-primary d-flex" href="/"><img src="{{ url_for('static', filename='assets/images/q.png') }}"
+                            alt="QuotesOceansLogo">uotes<span class="coral">Oceans</span></a></h1>
+            </div>
+            <div class="menu d-flex">
+                <img onclick="navOpen()" src="{{ url_for('static', filename='assets/images/icons/menu.png') }}" alt="menu"
+                    class="invert">
+            </div>
+        </div>
+        <div class="d-flex" id="search-bar">
+            <form action="/" method="get" class="search-form">
+                <input type="search" name="query" id="query" placeholder="Search by author name, quote, keyword..."
+                    class="search" autocomplete="off" value="{{search}}">
+                <button type="submit" class="search-btn d-flex"><img class="search-img"
+                        src="{{ url_for('static', filename='assets/images/icons/search.png') }}" alt="Search here"></button>
+            </form>
+        </div>
+    </header>
+
+    <!-- Navigation Section -->
+    <nav id="navigation">
+        <div id="navbar">
+            <h2>All Categories <span onclick="navClose()">&times;</span></h2>
+            <ul class="menu-bar">
+                {% for category in categories %}
+                <li><a class="nav-link" href="/quotes/{{category.name.lower()}}">{{category.name.capitalize()}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Scroll Top button -->
+    <div>
+        <a href="#header" id="scroll-top"><img src="{{ url_for('static', filename='assets/images/icons/toparrow.png')}}" alt="Scroll top"></a>
+    </div>
+
+    {% block body %} {% endblock %}
+
+    <footer id="footer" class="d-flex">
+        <div class="footer-top w-70">
+            <div class="footer-box">
+                <h2>A Message From Owner</h2>
+                <p class="para">
+                    Everyday you should hear some good thought from great people who had done something extraordinary
+                    things in life you should inspired from them. And for your help this is my trial to give you quotes
+                    and their meaning from the great personality, you will learn a lot from QuotesOceans.com. We are
+                    covering every quote given by great people. Thank You !
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="w-70 d-flex justify-between">
+                <p class="para">&copy; <a class="coral" href="/"><b>QuotesOceans.com</b></a> || {{params['tag_line']}} -
+                    All
+                    Rights Reserved</p>
+                <div class="footer-links">
+                    <a class="link" href="/about">About Us</a>
+                    <a class="link" href="/contact">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Javascript Section -->
+    <script src="{{ url_for('static', filename='assets/js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/')}}{{script}}"></script>
+
+</body>
+
+</html>
