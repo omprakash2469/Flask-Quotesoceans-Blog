@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 05, 2022 at 08:08 PM
+-- Generation Time: Sep 09, 2022 at 03:32 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -169,18 +169,6 @@ INSERT INTO `author` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `author_quote`
---
-
-CREATE TABLE `author_quote` (
-  `authorid` int(11) NOT NULL,
-  `categoryid` int(11) NOT NULL,
-  `quoteid` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `business`
 --
 
@@ -240,8 +228,8 @@ INSERT INTO `category` (`id`, `name`, `catImage`) VALUES
 (6, 'sports', '1637344341v13O5j06epIf4Sd.webp'),
 (7, 'motivation', '1637344348flLdVpmaCZos2O8.webp'),
 (8, 'relationship', '1637344357dxmOLJ40SqjF6r4.webp'),
-(9, 'shayaris', '1637344182wlvtV5deNpa1f81.webp'),
-(10, 'memes', '1637344368uvX23PR3nsAGm6V.webp'),
+(9, 'philosophy', 'philosophy-category-image.webp'),
+(10, 'spirituality', 'spirituality-category-image.webp'),
 (11, 'friendship', '1637344377CkcVqB7NPS3ZhA1.webp'),
 (12, 'travel', '1637344389yXB3Df6VS3zlKsi.webp'),
 (13, 'family', '16373444013b30vX8U4F45zkx.webp'),
@@ -265,20 +253,6 @@ CREATE TABLE `contact` (
   `message` text NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `contact`
---
-
-INSERT INTO `contact` (`user_id`, `fname`, `lname`, `location`, `email`, `subject`, `message`, `date`) VALUES
-(97, 'AntonioBroop', 'AntonioBroopWM', 'Australia', 'ianina2010@yahoo.com', 'Nouveaux revenus a partir de 1500 euros par jour', 'Revenu passif a partir de 1500 euros par jour >>>>>>>>>>>>>>  https://telegra.ph/Derni%C3%A8res-nouvelles--Alors-que-les-prix-augmentent-les-Europ%C3%A9ens-commencent-%C3%A0-arr%C3%AAter-de-fumer-en-masse-et-gagnent-en-plus-%C3%A0-par-04-01-2?7hh   <<<<<<<<<<<', '2022-04-02 10:39:21'),
-(98, 'Mike ', 'Mike ', 'New Zealand', 'no-replySosyhecy@gmail.com', 'Local SEO for more business', 'Hello \r\n \r\nWe will enhance your Local Ranks organically and safely, using only whitehat methods, while providing Google maps and website offsite work at the same time. \r\n \r\nPlease check our services below, we offer Local SEO at cheap rates. \r\nhttps://speed-seo.net/product/local-seo-package/ \r\n \r\nNEW: \r\nhttps://www.speed-seo.net/product/zip-codes-gmaps-citations/ \r\n \r\nregards \r\nMike  \r\nSpeed SEO Digital Agency', '2022-04-02 22:23:47'),
-(99, 'fad', 'fadf', '23', 'development1270@gmail.com', 'Application for internship and business purpose', 'fawef aefa efa aewfa e', '2022-08-24 20:00:59'),
-(100, 'fad', 'fadf', '23', 'development1270@gmail.com', 'Application for internship and business purpose', 'fawef aefa efa aewfa e', '2022-08-24 20:01:44'),
-(101, 'fad', 'greferf', 'dfawef', 'sampleemail7499@gmail.com', '23', '234234', '2022-08-24 20:01:57'),
-(102, 'fad', 'afwga', 'dfawef', 'gf@gmail.com', 'Application for internship and business purpose', 'aefwef', '2022-08-24 20:02:27'),
-(103, 'aewf', 'aefawe', 'aefaewf', 'development1270@gmail.com', 'asdasd', 'fadfwef', '2022-08-24 20:02:50'),
-(104, 'aewf', 'aefawe', 'aefaewf', 'development1270@gmail.com', 'asdasd', 'fadfwef', '2022-08-24 20:03:49');
 
 -- --------------------------------------------------------
 
@@ -384,20 +358,6 @@ INSERT INTO `love` (`quoteid`, `quotetext`, `quoteImg`, `authorid`, `quotedate`)
 -- --------------------------------------------------------
 
 --
--- Table structure for table `memes`
---
-
-CREATE TABLE `memes` (
-  `quoteid` int(11) NOT NULL,
-  `quotetext` text NOT NULL,
-  `quoteImg` varchar(255) NOT NULL,
-  `authorid` int(11) NOT NULL,
-  `quotedate` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `motivation`
 --
 
@@ -436,20 +396,6 @@ INSERT INTO `motivation` (`quoteid`, `quotetext`, `quoteImg`, `authorid`, `quote
 (27, 'Reading is to the mind what exercise is to the body and prayer is to the soul. We become the books we read.', '', 68, '2021-11-07 07:43:48'),
 (28, '“If your business is not on the Internet, then your business will be out of business.” ', '', 4, '2021-11-14 16:36:31'),
 (29, 'Someone is sitting in the shade of a tree today because planted a tree a long time ago.', '163747769974tZmuj3DrzgoF3.jpg', 66, '2021-11-21 06:54:59');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `name`
---
-
-CREATE TABLE `name` (
-  `quoteid` int(11) NOT NULL,
-  `quotetext` text NOT NULL,
-  `quoteImg` varchar(255) NOT NULL,
-  `authorid` int(11) NOT NULL,
-  `quotedate` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -518,20 +464,6 @@ INSERT INTO `psychology` (`quoteid`, `quotetext`, `quoteImg`, `authorid`, `quote
 --
 
 CREATE TABLE `relationship` (
-  `quoteid` int(11) NOT NULL,
-  `quotetext` text NOT NULL,
-  `quoteImg` varchar(255) NOT NULL,
-  `authorid` int(11) NOT NULL,
-  `quotedate` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `shayaris`
---
-
-CREATE TABLE `shayaris` (
   `quoteid` int(11) NOT NULL,
   `quotetext` text NOT NULL,
   `quoteImg` varchar(255) NOT NULL,
@@ -645,12 +577,6 @@ ALTER TABLE `author` ADD FULLTEXT KEY `name_2` (`name`);
 ALTER TABLE `author` ADD FULLTEXT KEY `name_3` (`name`);
 
 --
--- Indexes for table `author_quote`
---
-ALTER TABLE `author_quote`
-  ADD PRIMARY KEY (`authorid`);
-
---
 -- Indexes for table `business`
 --
 ALTER TABLE `business`
@@ -703,28 +629,12 @@ ALTER TABLE `love`
 ALTER TABLE `love` ADD FULLTEXT KEY `quotetext` (`quotetext`);
 
 --
--- Indexes for table `memes`
---
-ALTER TABLE `memes`
-  ADD PRIMARY KEY (`quoteid`),
-  ADD KEY `authorid` (`authorid`);
-ALTER TABLE `memes` ADD FULLTEXT KEY `quotetext` (`quotetext`);
-
---
 -- Indexes for table `motivation`
 --
 ALTER TABLE `motivation`
   ADD PRIMARY KEY (`quoteid`),
   ADD KEY `authorid` (`authorid`);
 ALTER TABLE `motivation` ADD FULLTEXT KEY `quotetext` (`quotetext`);
-
---
--- Indexes for table `name`
---
-ALTER TABLE `name`
-  ADD PRIMARY KEY (`quoteid`),
-  ADD KEY `authorid` (`authorid`);
-ALTER TABLE `name` ADD FULLTEXT KEY `quotetext` (`quotetext`);
 
 --
 -- Indexes for table `programming`
@@ -749,14 +659,6 @@ ALTER TABLE `relationship`
   ADD PRIMARY KEY (`quoteid`),
   ADD KEY `authorid` (`authorid`);
 ALTER TABLE `relationship` ADD FULLTEXT KEY `quotetext` (`quotetext`);
-
---
--- Indexes for table `shayaris`
---
-ALTER TABLE `shayaris`
-  ADD PRIMARY KEY (`quoteid`),
-  ADD KEY `authorid` (`authorid`);
-ALTER TABLE `shayaris` ADD FULLTEXT KEY `quotetext` (`quotetext`);
 
 --
 -- Indexes for table `sports`
@@ -855,22 +757,10 @@ ALTER TABLE `love`
   MODIFY `quoteid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `memes`
---
-ALTER TABLE `memes`
-  MODIFY `quoteid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `motivation`
 --
 ALTER TABLE `motivation`
   MODIFY `quoteid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
-
---
--- AUTO_INCREMENT for table `name`
---
-ALTER TABLE `name`
-  MODIFY `quoteid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `programming`
@@ -888,12 +778,6 @@ ALTER TABLE `psychology`
 -- AUTO_INCREMENT for table `relationship`
 --
 ALTER TABLE `relationship`
-  MODIFY `quoteid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `shayaris`
---
-ALTER TABLE `shayaris`
   MODIFY `quoteid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -961,22 +845,10 @@ ALTER TABLE `love`
   ADD CONSTRAINT `love_ibfk_1` FOREIGN KEY (`authorid`) REFERENCES `author` (`id`);
 
 --
--- Constraints for table `memes`
---
-ALTER TABLE `memes`
-  ADD CONSTRAINT `memes_ibfk_1` FOREIGN KEY (`authorid`) REFERENCES `author` (`id`);
-
---
 -- Constraints for table `motivation`
 --
 ALTER TABLE `motivation`
   ADD CONSTRAINT `motivation_ibfk_1` FOREIGN KEY (`authorid`) REFERENCES `author` (`id`);
-
---
--- Constraints for table `name`
---
-ALTER TABLE `name`
-  ADD CONSTRAINT `name_ibfk_1` FOREIGN KEY (`authorid`) REFERENCES `author` (`id`);
 
 --
 -- Constraints for table `programming`
@@ -995,12 +867,6 @@ ALTER TABLE `psychology`
 --
 ALTER TABLE `relationship`
   ADD CONSTRAINT `relationship_ibfk_1` FOREIGN KEY (`authorid`) REFERENCES `author` (`id`);
-
---
--- Constraints for table `shayaris`
---
-ALTER TABLE `shayaris`
-  ADD CONSTRAINT `shayaris_ibfk_1` FOREIGN KEY (`authorid`) REFERENCES `author` (`id`);
 
 --
 -- Constraints for table `sports`
