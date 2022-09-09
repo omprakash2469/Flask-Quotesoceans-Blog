@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<!-- Categories Section -->
+<section class="container">
+    <p style="color: white;">{{quotes}}</p>
+    <div class="c-header">
+        <h3>Trending Categories >></h3>
+    </div>
+    <div class="categories">
+        <div class="gallery">
+            {% for category in categories %}
+            <figure class="gallery__item gallery__item--{{category.id - 1}}">
+                <img src="{{ url_for('static', filename='assets/images/category/')}}{{category.catImage}}"
+                    alt="Quotes on Life" class="gallery__img">
+                <figcaption class="box-desc">
+                    <a href="/quotes/{{category.name.lower()}}" class="d-flex">{{category.name.capitalize()}}</a>
+                </figcaption>
+            </figure>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Authors Section -->
+<section class="container_2">
+    <div class="c_2-heading">
+        <h2>Search By Authors</h2>
+    </div>
+    <div class="author_grid">
+        {% for author in authors %}
+        <div>
+            - <a href="/author/{{author.name.replace(' ', '-').lower()}}" class="a-link">{{author.name|title}}</a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+<script>
+    // Serialize Categories on homepage
+    document.querySelector('.gallery__item--17').classList.replace('gallery__item--17', 'gallery__item--1')
+</script>
+{% endblock %}

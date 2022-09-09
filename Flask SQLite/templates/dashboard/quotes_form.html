@@ -1,0 +1,99 @@
+{% extends 'dashboard/layout.html' %}
+{% block body %}
+<main class="h-full pb-16 overflow-y-auto">
+  <div class="container px-6 mx-auto grid">
+    <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+      {{form['title']}}
+    </h2>
+
+    <!-- General elements -->
+    <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+      <form action="{{url_for('dashboard_add_quotes')}}" method="post" enctype="multipart/form-data">
+        <label class="block text-sm">
+          <span class="text-gray-700 dark:text-gray-400">
+            Select Author
+          </span>
+          <select name="author"
+            class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+            <option>-- Select --</option>
+            {% for author in form['authors'] %}
+            <option {% if form['authorid']==author.id %} selected {% endif %} value="{{author.id}}">{{author.name}}
+            </option>
+            {% endfor %}
+          </select>
+        </label>
+
+        <div class="mt-4 text-sm">
+          <span class="text-gray-700 dark:text-gray-400">
+            Select Categories
+          </span>
+          <div class="mt-2 grid sm:grid-cols-2 lg:grid-cols-4">
+            {% for category in categories %}
+            <div>
+              <label class="inline-flex items-center text-gray-600 dark:text-gray-400 mr-3">
+                <input type="checkbox" {% for q in form['quote_categories'] %} {% if q == category.name.lower() %} checked {% endif %} {% endfor %}
+                  class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                  name="category" value="{{category.name.lower()}}">
+                <span class="ml-2">{{category.name.capitalize()}}</span>
+              </label>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <label class="block mt-4 text-sm">
+          <span class="text-gray-700 dark:text-gray-400">Enter Quote</span>
+          <textarea name="quote"
+            class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+            rows="3" placeholder="Quote Goes Here...">{{form['quote']}}</textarea>
+        </label>
+
+        <div class="mt-4 text-sm">
+          <span class="text-gray-700 dark:text-gray-400">
+            Quote Image Name
+          </span>
+          <div class="mt-2">
+            <label class="block text-sm">
+              <input type="text" name="image_name" value="{{form['image']}}"
+                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                placeholder="Enter Quote Image Name" />
+            </label>
+          </div>
+        </div>
+
+        <div class="mt-4 text-sm">
+          {% if form['image'] %}
+          <img class="mx-auto w-64" src="{{url_for('static', filename='assets/images/quotes/')}}{{form['category']}}/{{form['image']}}"
+            alt="Sample image">
+          {% endif %}
+          <span class="text-gray-700 dark:text-gray-400">
+            Upload Quote Image
+          </span>
+          <div class="mt-2">
+            <label class="block text-sm">
+              <input type="file" name="image"
+                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" />
+            </label>
+          </div>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category, msg in messages %}
+        <p class="mt-4 {{category}}">{{msg}}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <div class="mt-4">
+          <button
+            class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+            {{form['button']}}
+          </button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</main>
+{% endblock %}

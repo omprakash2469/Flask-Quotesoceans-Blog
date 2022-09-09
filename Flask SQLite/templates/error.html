@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Occured</title>
+    <link rel="stylesheet" href="/error/style.css">
+</head>
+
+<body>
+    <div class="content">
+        <h1><a href="/" class="heading">Quotes<span class="color">Oceans</span>.com</a></h1>
+        <p class="error">OOPS ! Page Not Found</p>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+                    <p class="error">{{msg}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+
+</html>
